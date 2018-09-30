@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tinydb-viewer"
-version = "0.1.4.8"
+version = "0.2.2"
 description = "View records generated from TinyDB and alike (e.g. list of dictionaries.)"
 authors = ["patarapolw <patarapolw@gmail.com>"]
 
@@ -10,5 +10,7 @@ pyexcel = "^0.5.9"
 pyexcel-text = "^0.2.7"
 tinydb = "^3.11"
 python-dateutil = "^2.7"
+flask = "^1.0"
+requests = "^2.19"
 
 [tool.poetry.dev-dependencies]

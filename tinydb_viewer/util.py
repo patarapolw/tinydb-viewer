@@ -7,5 +7,4 @@ control_char_re = re.compile('[%s]' % re.escape(control_chars))
 
 
 def remove_control_chars(s):
-    return unicodedata.normalize("NFKD",
-                                 control_char_re.sub('', s))
+    return unicodedata.normalize("NFKD", control_char_re.sub('', s))

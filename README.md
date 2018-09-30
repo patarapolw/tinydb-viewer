@@ -9,33 +9,35 @@ View records generated from [TinyDB](https://tinydb.readthedocs.io/en/latest/ind
 
 ## Usage
 
-In IPython or in Jupyter Notebook,
+Run a server initiation script first. This will allow you to edit the data as well.
 
 ```python
->>> from tinydb_viewer import TinyDBViwer, TinyDB
->>> tdb = TinyDB('db.json')
->>> records = tdb.search(tdb.query['foo'] == 'bar')
->>> viewer = TinyDBViewer(records, sort_func=lambda x: x['baz'])
->>> viewer.view()
-'The first page is shown.'
->>> viewer.view(-1)
-'The last page is shown.'
->>> viewer.previous()
-'The previous page (i-1) is shown.'
->>> viewer.next()
-'The next page (i+1) is shown.'
+from tinydb_viewer import TinyDB
+TinyDB('db.json').runserver()
 ```
 
-## How it works
+Then, in IPython or in Jupyter Notebook,
 
-This works by [the power of pyexcel](https://pyexcel.readthedocs.io/en/latest/design.html#examples-of-supported-data-structure). If you are interested in extending the viewer format, just change the `viewer_func` (which defaults to `lambda x: pyexcel.get_sheet(records=x)`). Some possible extensions are https://github.com/pyexcel/pyexcel#available-plugins
+```python
+>>> from tinydb_viewer import TinyDB
+>>> tdb = TinyDB('db.json')
+>>> tdb.search(tdb.query['foo'] == 'bar', sort_func=lambda x: x['baz'])
+>>> tdb.view()
+'The first page is shown.'
+>>> tdb.view(-1)
+'The last page is shown.'
+>>> tdb.previous()
+'The previous page (i-1) is shown.'
+>>> tdb.next()
+'The next page (i+1) is shown.'
+```
 
 ## Bonus
 
 I extended TinyDB a little. My TinyDB is 'ensure_ascii' = False by default, so that the file is a little smaller.
 
 ```python
->>> from tinydb_viewer import TinyDBViwer, TinyDB
+>>> from tinydb_viewer import TinyDB
 >>> tdb = TinyDB('db.json')
 >>> schema = tdb.schema()
 >>> schema
@@ -45,14 +47,11 @@ I extended TinyDB a little. My TinyDB is 'ensure_ascii' = False by default, so t
 To ensure consistent types:
 
 ```python
->>> tdb.insert_multiple(tdb.sanitize_records(records))
+>>> tdb.insert_multiple(records, sanitize=True)
 ```
+
+Default is `sanitize=True`.
 
 ## Screenshots
 
 ![](/screenshots/jupyter0.png?raw=true)
-![](/screenshots/jupyter1.png?raw=true)
-
-## Plans
-
-Use [pyhandsontable](https://github.com/patarapolw/pyhandsontable) for the default viewer (which may allows editing of items via webserver's API).
