@@ -17,7 +17,7 @@ In IPython or in Jupyter Notebook,
 >>> query = tinydb.Query()
 >>> records = tdb.search(query['foo'] == 'bar')
 >>> from tinydb_viewer import TinyDBViwer
->>> viewer = TinyDBViewer(records)
+>>> viewer = TinyDBViewer(records, sort_func=lambda x: x['baz'])
 >>> viewer.view()
 'The first page is shown.'
 >>> viewer.view(-1)
