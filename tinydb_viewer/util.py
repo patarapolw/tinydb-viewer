@@ -1,6 +1,5 @@
 import tinydb
 import dateutil.parser
-from datetime import datetime
 import unicodedata, re
 
 all_chars = (chr(i) for i in range(0x110000))
@@ -63,7 +62,8 @@ class TinyDB(tinydb.TinyDB):
         return all_schemas
 
 
-def sanitize_records(records, schema=None, table_name=None):
+def sanitize_records(records, schema=None, table_name=None,
+                     parse_datetime=True, dateutil_kwargs=None):
     """Sanitizes records, e.g. from Excel spreadsheet
     
     Arguments:
@@ -101,7 +101,7 @@ def sanitize_records(records, schema=None, table_name=None):
             for k in to_pop:
                 record.pop(k)
 
-            table_schema.update(record_schema(record, parse_datetime=False))
+            table_schema.update(record_schema(record, parse_datetime, dateutil_kwargs))
 
             yield record
 
@@ -139,10 +139,14 @@ def record_schema(record, parse_datetime=True, dateutil_kwargs=None):
         if parse_datetime and isinstance(v, str):
             try:
                 dateutil.parser.parse(v, **dateutil_kwargs)
-                record[k] = 'datetime str'
+                record[k] = DateTimeStr
             except ValueError:
                 record[k] = type(v)
         else:
             record[k] = type(v)
 
     return record
+
+
+class DateTimeStr:
+    pass
