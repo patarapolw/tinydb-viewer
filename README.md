@@ -12,11 +12,9 @@ View records generated from [TinyDB](https://tinydb.readthedocs.io/en/latest/ind
 In IPython or in Jupyter Notebook,
 
 ```python
->>> import tinydb
->>> tdb = tinydb.TinyDB('db.json')
->>> query = tinydb.Query()
->>> records = tdb.search(query['foo'] == 'bar')
->>> from tinydb_viewer import TinyDBViwer
+>>> from tinydb_viewer import TinyDBViwer, TinyDB
+>>> tdb = TinyDB('db.json')
+>>> records = tdb.search(tdb.query['foo'] == 'bar')
 >>> viewer = TinyDBViewer(records, sort_func=lambda x: x['baz'])
 >>> viewer.view()
 'The first page is shown.'
@@ -32,9 +30,29 @@ In IPython or in Jupyter Notebook,
 
 This works by [the power of pyexcel](https://pyexcel.readthedocs.io/en/latest/design.html#examples-of-supported-data-structure). If you are interested in extending the viewer format, just change the `viewer_func` (which defaults to `lambda x: pyexcel.get_sheet(records=x)`). Some possible extensions are https://github.com/pyexcel/pyexcel#available-plugins
 
+## Bonus
+
+I extended TinyDB a little. My TinyDB is 'ensure_ascii' = False by default, so that the file is a little smaller.
+
+```python
+>>> from tinydb_viewer import TinyDBViwer, TinyDB
+>>> tdb = TinyDB('db.json')
+>>> schema = tdb.schema()
+>>> schema
+{'_default': {'patho_id': <class 'str'>, 'patient_id': <class 'int'>, 'full_name': <class 'str'>, 'pathologist': <class 'str'>, 'resident': <class 'str'>, 'received': 'datetime str'}}
+```
+
+To ensure consistent types:
+
+```python
+>>> from tinydb_viewer import sanitize_records
+>>> idb.insert_multiple(sanitize_records(records, schema=schema))
+```
+
 ## Screenshots
 
-![](/screenshots/jupyter.png?raw=true)
+![](/screenshots/jupyter0.png?raw=true)
+![](/screenshots/jupyter1.png?raw=true)
 
 ## Plans
 
