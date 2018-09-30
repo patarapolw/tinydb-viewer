@@ -48,6 +48,27 @@ tabulate = ">=0.7.4"
 
 [[package]]
 category = "main"
+description = "Extensions to the standard Python datetime module"
+name = "python-dateutil"
+optional = false
+platform = "*"
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
+version = "2.7.3"
+
+[package.dependencies]
+six = ">=1.5"
+
+[[package]]
+category = "main"
+description = "Python 2 and 3 compatibility utilities"
+name = "six"
+optional = false
+platform = "*"
+python-versions = "*"
+version = "1.11.0"
+
+[[package]]
+category = "main"
 description = "Pretty-print tabular data"
 name = "tabulate"
 optional = false
@@ -74,7 +95,7 @@ python-versions = "*"
 version = "3.11.1"
 
 [metadata]
-content-hash = "7b1535e8607fc7f8d91be75aaaca0645f7d8716fa2eb9b641b70a1ba8f9b31c7"
+content-hash = "7d1e3172171a6e956424f0961c083371209643ccaa6ed8414da75fe5b7c25673"
 platform = "*"
 python-versions = "*"
 
@@ -83,6 +104,8 @@ lml = ["b670e3d5a92b86a1e8860612c686b941246c42f1ebcd49056a7695c8e22ecace", "e76c
 pyexcel = ["80ef92c9d5dd5a2b602407042976f79e96451e30c83f52440bdb276018900320", "debdc7e62534f99dc3c2d29c99cb4f3c174adeed3af68bfae3aa223c9bc6b97b"]
 pyexcel-io = ["057fe3a8945a538a2e3a9ea82733f3024cd62b3405d8a430d7be4e464e6e3de0", "2e3ae9bac00f0ad69f4d0700176defb90fa8228936eafd40c3f0eadf61b30190"]
 pyexcel-text = ["55b67ec7a2335ae915169584127aa89caa44eaac6130f2a1a9488e109ee1ffb1", "70f27997f96c7e6b02d9142f10b8de57ad3920317a71379d1bdafaa4d348ceb6"]
+python-dateutil = ["1adb80e7a782c12e52ef9a8182bebeb73f1d7e24e374397af06fb4956c8dc5c0", "e27001de32f627c22380a688bcc43ce83504a7bc5da472209b4c70f02829f0b8"]
+six = ["70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9", "832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb"]
 tabulate = ["e4ca13f26d0a6be2a2915428dc21e732f1e44dad7f76d7030b2ef1ec251cf7f2"]
 texttable = ["95e8cfe85f8395a7eacdfbc8f09d885b9ef3a6ac6ead0364ea721de1127aa36b"]
 tinydb = ["2b3dfb59dfb981bf719773bbf78e10ff2081104fe62793d1c4bdbd6f9c62a843", "643807a7793c6ee358d7d7b548ea0828660bff1899b178307bb862e97df645b1"]
