@@ -45,9 +45,7 @@ I extended TinyDB a little. My TinyDB is 'ensure_ascii' = False by default, so t
 To ensure consistent types:
 
 ```python
->>> from tinydb_viewer import sanitize_records
->>> tdb.insert_multiple(sanitize_records(records, schema=schema))
->>> tdb.close()
+>>> tdb.insert_multiple(tdb.sanitize_records(records))
 ```
 
 ## Screenshots
