@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tinydb-viewer"
-version = "0.1.3.10"
+version = "0.1.4.8"
 description = "View records generated from TinyDB and alike (e.g. list of dictionaries.)"
 authors = ["patarapolw <patarapolw@gmail.com>"]
 

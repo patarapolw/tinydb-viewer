@@ -39,14 +39,15 @@ I extended TinyDB a little. My TinyDB is 'ensure_ascii' = False by default, so t
 >>> tdb = TinyDB('db.json')
 >>> schema = tdb.schema()
 >>> schema
-{'_default': {'patho_id': <class 'str'>, 'patient_id': <class 'int'>, 'full_name': <class 'str'>, 'pathologist': <class 'str'>, 'resident': <class 'str'>, 'received': <class 'DateTimeStr'>}}
+{'_default': {'patho_id': <class 'str'>, 'patient_id': <class 'int'>, 'full_name': <class 'str'>, 'pathologist': <class 'str'>, 'resident': <class 'str'>, 'received': 'datetime str'}}
 ```
 
 To ensure consistent types:
 
 ```python
 >>> from tinydb_viewer import sanitize_records
->>> idb.insert_multiple(sanitize_records(records, schema=schema))
+>>> tdb.insert_multiple(sanitize_records(records, schema=schema))
+>>> tdb.close()
 ```
 
 ## Screenshots

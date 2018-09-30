@@ -1,2 +1,1 @@
-from .main import TinyDBViewer
-from .util import TinyDB, sanitize_records
+from .main import TinyDBViewer, TinyDB
