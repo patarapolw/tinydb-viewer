@@ -1,0 +1,54 @@
+[[package]]
+category = "main"
+description = "Load me later. A lazy plugin management system."
+name = "lml"
+optional = false
+platform = "*"
+python-versions = "*"
+version = "0.0.4"
+
+[[package]]
+category = "main"
+description = "A wrapper library that provides one API to read, manipulate and writedata in different excel formats"
+name = "pyexcel"
+optional = false
+platform = "*"
+python-versions = "*"
+version = "0.5.9.1"
+
+[package.dependencies]
+lml = ">=0.0.2"
+pyexcel-io = ">=0.5.9.1"
+texttable = ">=0.8.1"
+
+[[package]]
+category = "main"
+description = "A python library to read and write structured data in csv, zipped csvformat and to/from databases"
+name = "pyexcel-io"
+optional = false
+platform = "*"
+python-versions = "*"
+version = "0.5.9.1"
+
+[package.dependencies]
+lml = ">=0.0.2"
+
+[[package]]
+category = "main"
+description = "module for creating simple ASCII tables"
+name = "texttable"
+optional = false
+platform = "any"
+python-versions = "*"
+version = "1.4.0"
+
+[metadata]
+content-hash = "d6fdb7eb87338435cb1c0f592a03ce837d2b29cc7bb295cf8e0ac4c031dde74c"
+platform = "*"
+python-versions = "*"
+
+[metadata.hashes]
+lml = ["b670e3d5a92b86a1e8860612c686b941246c42f1ebcd49056a7695c8e22ecace", "e76ca18822ff3bd67d4598c3a792c2e68046ebd9594b5dd34c956736916b826d"]
+pyexcel = ["80ef92c9d5dd5a2b602407042976f79e96451e30c83f52440bdb276018900320", "debdc7e62534f99dc3c2d29c99cb4f3c174adeed3af68bfae3aa223c9bc6b97b"]
+pyexcel-io = ["057fe3a8945a538a2e3a9ea82733f3024cd62b3405d8a430d7be4e464e6e3de0", "2e3ae9bac00f0ad69f4d0700176defb90fa8228936eafd40c3f0eadf61b30190"]
+texttable = ["95e8cfe85f8395a7eacdfbc8f09d885b9ef3a6ac6ead0364ea721de1127aa36b"]

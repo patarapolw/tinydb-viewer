@@ -1,0 +1,11 @@
+[tool.poetry]
+name = "tinydb-viewer"
+version = "0.1.0"
+description = ""
+authors = ["patarapolw <patarapolw@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "*"
+pyexcel = "^0.5.9"
+
+[tool.poetry.dev-dependencies]
