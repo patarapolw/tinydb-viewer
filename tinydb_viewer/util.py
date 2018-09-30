@@ -94,7 +94,7 @@ def sanitize_records(records, schema=None, table_name=None,
                     else:
                         record[k] = v
 
-                type_ = table_schema.get(table_name, dict()).get(k, None)
+                type_ = table_schema.get(k, None)
                 if type_:
                     assert isinstance(record[k], type_)
 
