@@ -32,10 +32,10 @@ In IPython or in Jupyter Notebook,
 
 This works by [the power of pyexcel](https://pyexcel.readthedocs.io/en/latest/design.html#examples-of-supported-data-structure). If you are interested in extending the viewer format, just change the `viewer_func` (which defaults to `lambda x: pyexcel.get_sheet(records=x)`). Some possible extensions are https://github.com/pyexcel/pyexcel#available-plugins
 
-## Additional plugins
-
-- [pyhandsontable](https://github.com/patarapolw/pyhandsontable)
-
 ## Screenshots
 
 ![](/screenshots/jupyter.png?raw=true)
+
+## Plans
+
+Use [pyhandsontable](https://github.com/patarapolw/pyhandsontable) for the default viewer (which may allows editing of items via webserver's API).
