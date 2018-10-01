@@ -33,10 +33,16 @@ class DataTable:
 
         self.web_config = web_config
         self.table_name = table_name
-        self.records = records
+        self.kwargs = kwargs
+
+        self.pyexcel_records = list()
+        for record in records:
+            self.pyexcel_records.append([record.doc_id] + record)
 
     def _repr_html_(self):
         try:
+            height = self.kwargs.get('height', None)
+
             url = 'http://{}:{}'.format(config['host'], config['port'])
             r = requests.post('{}/api/create'.format(url), json={
                 'tableName': self.table_name,
@@ -44,6 +50,10 @@ class DataTable:
                 'fileId': config['file_id']
             })
             r.raise_for_status()
-            return '<iframe src="{}" width=800></iframe>'.format(url)
+            return '<iframe src="{}" width={} {}></iframe>'.format(
+                url,
+                self.kwargs.get('width', 800),
+                'height={}'.format(height) if height else ''
+            )
         except (requests.exceptions.ConnectionError, requests.exceptions.HTTPError):
-            return pyexcel.get_sheet(records=self.records).html
+            return pyexcel.get_sheet(records=self.pyexcel_records).html

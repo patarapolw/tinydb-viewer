@@ -1,141 +1,29 @@
-from tinydb.database import Table
-import dateutil.parser
+try:
+    from tinydb_constraint import ConstraintTable as Table
+except ImportError:
+    from tinydb.database import Table
 
-from .util import remove_control_chars
-from .config import config
 from .renderer import DataTable
 
 
 class ViewableTable(Table):
     view_dict = None
 
-    def insert(self, element, sanitize=True):
-        if sanitize:
-            return super().insert(self.sanitize_records([element])[0])
-        else:
-            return super().insert(element)
-
-    def insert_multiple(self, elements, sanitize=True):
-        if sanitize:
-            return super().insert_multiple(self.sanitize_records(elements))
-        else:
-            return super().insert_multiple(elements)
-
-    def update(self, fields, sanitize=True, cond=None, doc_ids=None, eids=None):
-        if sanitize:
-            if callable(fields):
-                _update = lambda data, eid: self.sanitize_records([fields(data[eid])])[0]
-            else:
-                _update = lambda data, eid: data[eid].update(self.sanitize_records([fields])[0])
-
-            self.process_elements(_update, cond, eids)
-        else:
-            super().update(fields, sanitize=True, cond=None, doc_ids=None, eids=None)
-
-    def sanitize_records(self, records):
-        """Sanitizes records, e.g. from Excel spreadsheet
-
-        Arguments:
-            records {iterable} -- Iterable of records
-
-        Keyword Arguments:
-            schema {dict} -- Dictionary of schemas (default: {None})
-            table_name {str} -- Table name to get from schema (default: {None})
-
-        Returns:
-            list -- List of records
-        """
-
-        def _records():
-            for record in records:
-                to_pop = set()
-
-                for k0, v0 in record.items():
-                    if isinstance(v0, str):
-                        v0 = remove_control_chars(v0.strip())
-                        if v0.isdigit():
-                            record[k0] = int(v0)
-                        elif '.' in v0 and v0.replace('.', '', 1).isdigit():
-                            record[k0] = float(v0)
-                        elif v0 in {'', '-'}:
-                            to_pop.add(k0)
-                            continue
-                        else:
-                            record[k0] = v0
-
-                    type_ = table_schema.get(k0, None)
-                    if type_:
-                        assert isinstance(type_, type)
-                        assert isinstance(record[k0], type_)
-
-                for k0 in to_pop:
-                    record.pop(k0)
-
-                table_schema.update(self._record_schema(record, show_datetime=False))
-
-                yield record
-
-        table_schema = self.schema()
-        for v in table_schema.values():
-            assert not isinstance(v, (list, tuple, set))
-
-        return list(_records())
-
-    def schema(self):
-        result = dict()
-
-        for record in self.all():
-            for k, v in self._record_schema(record).items():
-                result.setdefault(k, set()).add(v)
-
-        for k, v in result.items():
-            if len(v) == 1:
-                result[k] = v.pop()
-            else:
-                result[k] = list(v)
-
-        return result
-
-    @staticmethod
-    def _record_schema(record, show_datetime=None):
-        if show_datetime is None:
-            show_datetime = config['show_datetime']
-
-        record = record.copy()
-
-        for k, v in record.items():
-            if show_datetime:
-                if isinstance(v, str):
-                    try:
-                        dateutil.parser.parse(v)
-                        record[k] = 'datetime str'
-                    except ValueError:
-                        record[k] = type(v)
-                else:
-                    record[k] = type(v)
-            else:
-                record[k] = type(v)
-
-        return record
-
-    def all(self, *args, **kwargs):
+    def all(self, **kwargs):
         records = super().all()
-        self._viewer_init(records, *args, **kwargs)
+        self._viewer_init(records, **kwargs)
 
         return records
 
-    def search(self, cond, *args, **kwargs):
+    def search(self, cond, **kwargs):
         records = super().search(cond)
-        self._viewer_init(records, *args, **kwargs)
+        self._viewer_init(records, **kwargs)
 
         return records
 
-    def _viewer_init(self, records, chunk_size=10, sort_func=None, viewer_func=None, viewer_kwargs=None):
+    def _viewer_init(self, records, chunk_size=10, sort_func=None, viewer_func=None, **kwargs):
         if viewer_func is None:
-            if viewer_kwargs is None:
-                viewer_kwargs = dict()
-
-            viewer_func = lambda x: DataTable(x, table_name=self.name, **viewer_kwargs)
+            viewer_func = lambda x: DataTable(x, table_name=self.name, **kwargs)
 
         if sort_func:
             records = sorted(records, key=sort_func)

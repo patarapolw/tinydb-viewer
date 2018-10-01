@@ -191,6 +191,19 @@ python-versions = "*"
 version = "3.11.1"
 
 [[package]]
+category = "dev"
+description = "Apply constraints before inserting and updating TinyDB records."
+name = "tinydb-constraint"
+optional = false
+platform = "*"
+python-versions = "*"
+version = "0.1.0"
+
+[package.dependencies]
+python-dateutil = ">=2.7,<3.0"
+tinydb = ">=3.11,<4.0"
+
+[[package]]
 category = "main"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
 name = "urllib3"
@@ -209,7 +222,7 @@ python-versions = "*"
 version = "0.14.1"
 
 [metadata]
-content-hash = "d042f605f0953cb985cda2191e1a6fba7733eed661552200eda096f68c511100"
+content-hash = "44eda5c0b7db511e4a9946201af0da7166ad16f58ab342c333f1c8be7ae090b9"
 platform = "*"
 python-versions = "*"
 
@@ -232,5 +245,6 @@ six = ["70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9", "832d
 tabulate = ["e4ca13f26d0a6be2a2915428dc21e732f1e44dad7f76d7030b2ef1ec251cf7f2"]
 texttable = ["95e8cfe85f8395a7eacdfbc8f09d885b9ef3a6ac6ead0364ea721de1127aa36b"]
 tinydb = ["2b3dfb59dfb981bf719773bbf78e10ff2081104fe62793d1c4bdbd6f9c62a843", "643807a7793c6ee358d7d7b548ea0828660bff1899b178307bb862e97df645b1"]
+tinydb-constraint = ["13ff02dd86ea9138af864a90f0b71ed6d05fd06f76ece237ed0a90c47655bc6a", "7dacae4bebd6c9046198b7eb8ad61573271f76e24d196208f77f9ea2715f4833"]
 urllib3 = ["a68ac5e15e76e7e5dd2b8f94007233e01effe3e50e8daddf69acfd81cb686baf", "b5725a0bd4ba422ab0e66e89e030c806576753ea3ee08554382c14e685d117b5"]
 werkzeug = ["c3fd7a7d41976d9f44db327260e263132466836cef6f91512889ed60ad26557c", "d5da73735293558eb1651ee2fddc4d0dedcfa06538b8813a2e20011583c9e49b"]

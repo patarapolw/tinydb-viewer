@@ -1,11 +1,22 @@
 # tinydb-viewer
 
+[![PyPI version shields.io](https://img.shields.io/pypi/v/tinydb-viewer.svg)](https://pypi.python.org/pypi/tinydb-viewer/)
+[![PyPI license](https://img.shields.io/pypi/l/tinydb-viewer.svg)](https://pypi.python.org/pypi/tinydb-viewer/)
+
 View records generated from [TinyDB](https://tinydb.readthedocs.io/en/latest/index.html) and alike (e.g. list of dictionaries.)
 
 ## Installation
 
+Method 1:
+
+```commandline
+$ pip install tinydb-viewer
+```
+
+Method 2:
+
 - Clone the project from GitHub
-- Navigate to the project folder, then `poetry install`
+- [Get poetry](https://github.com/sdispater/poetry) and `poetry install tinydb-viewer --path PATH/TO/TINYDB/VIEWER`
 
 ## Usage
 
@@ -34,24 +45,14 @@ Then, in IPython or in Jupyter Notebook,
 
 ## Bonus
 
-I extended TinyDB a little. My TinyDB is 'ensure_ascii' = False by default, so that the file is a little smaller.
+I extended TinyDB a little. My TinyDB is `'ensure_ascii' = False` by default, so that the file is a little smaller.
 
-```python
->>> from tinydb_viewer import TinyDB
->>> tdb = TinyDB('db.json')
->>> schema = tdb.schema()
->>> schema
-{'_default': {'patho_id': <class 'str'>, 'patient_id': <class 'int'>, 'full_name': <class 'str'>, 'pathologist': <class 'str'>, 'resident': <class 'str'>, 'received': 'datetime str'}}
-```
-
-To ensure consistent types:
-
-```python
->>> tdb.insert_multiple(records, sanitize=True)
-```
-
-Default is `sanitize=True`.
+Also, it will use [tinydb-constraint](https://github.com/patarapolw/tinydb-constraint) by default, if it is installed.
 
 ## Screenshots
 
 ![](/screenshots/jupyter0.png?raw=true)
+
+## Related projects
+
+- [tinydb-constraint](https://github.com/patarapolw/tinydb-constraint) - Apply constraints before inserting and updating TinyDB records.
