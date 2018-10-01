@@ -8,10 +8,8 @@ from .config import config
 def create_table():
     r = request.get_json()
     if r['fileId'] == config['get_file_id']():
-        config.update({
-            'table': config['tinydb'].table(r['tableName']),
-            'handsontable': r['handsontable']
-        })
+        config['table'] = config['tinydb'].table(r['tableName'])
+        config['handsontable'].update(r['handsontable'])
 
         return Response(status=201)
     else:

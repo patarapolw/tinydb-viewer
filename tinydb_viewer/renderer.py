@@ -37,7 +37,12 @@ class DataTable:
 
         self.pyexcel_records = list()
         for record in records:
-            self.pyexcel_records.append([record.doc_id] + record)
+            pyexcel_record = {
+                'doc_id': record.doc_id
+            }
+            pyexcel_record.update(record)
+
+            self.pyexcel_records.append(pyexcel_record)
 
     def _repr_html_(self):
         try:

@@ -4,5 +4,8 @@ config = {
     'debug': False,
     'tinydb': None,
     'file_id': None,
-    'handsontable': dict()
+    'handsontable': {
+        'manualColumnResize': True,
+        'manualRowResize': True
+    }
 }

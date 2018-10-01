@@ -64,3 +64,16 @@ var actualConfig = {
 }
 config = Object.assign(actualConfig, config);
 var hot = new Handsontable(container, config);
+
+colWidths = [];
+[...Array(hot.countCols()).keys()].map(i => {
+    colWidths.push(hot.getColWidth(i));
+});
+
+hot.updateSettings({
+    colWidths: colWidths
+});
+
+hot.updateSettings({
+    modifyColWidth: ()=>{}
+});
