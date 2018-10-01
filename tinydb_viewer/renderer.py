@@ -47,7 +47,7 @@ class DataTable:
             r = requests.post('{}/api/create'.format(url), json={
                 'tableName': self.table_name,
                 'handsontable': self.web_config,
-                'fileId': config['file_id']
+                'fileId': config['get_file_id']()
             })
             r.raise_for_status()
             return '<iframe src="{}" width={} {}></iframe>'.format(

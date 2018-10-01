@@ -7,14 +7,15 @@ from .config import config
 @app.route('/api/create', methods=['POST'])
 def create_table():
     r = request.get_json()
-    assert r['fileId'] == config['file_id']
+    if r['fileId'] == config['get_file_id']():
+        config.update({
+            'table': config['tinydb'].table(r['tableName']),
+            'handsontable': r['handsontable']
+        })
 
-    config.update({
-        'table': config['tinydb'].table(r['tableName']),
-        'handsontable': r['handsontable']
-    })
-
-    return Response(status=201)
+        return Response(status=201)
+    else:
+        return Response(status=304)
 
 
 @app.route('/api/edit', methods=['POST'])

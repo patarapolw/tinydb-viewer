@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tinydb-viewer"
-version = "0.2.3"
+version = "0.2.4"
 description = "View records generated from TinyDB and alike (e.g. list of dictionaries.)"
 authors = ["Pacharapol Withyasakpunt <patarapolw@gmail.com>"]
 readme = 'README.md'
@@ -19,4 +19,4 @@ flask = "^1.0"
 requests = "^2.19"
 
 [tool.poetry.dev-dependencies]
-tinydb-constraint = "^0.1.0"
+#tinydb-constraint = "^0.1.0"
