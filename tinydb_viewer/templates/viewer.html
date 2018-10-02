@@ -26,8 +26,6 @@
     <div id="hotArea"></div>
 
     <script src="{{ js | default('https://cdn.jsdelivr.net/npm/handsontable-pro@5.0.0/dist/handsontable.full.min.js') }}"></script>
-
-    <script>var table = {{ table }};</script>
     <script>var config = {{ config|tojson }};</script>
     <script>var maxColWidth = {{ maxColWidth|default('200') }};</script>
     <script src="{{ url_for('static', filename='viewer.js') }}"></script>
