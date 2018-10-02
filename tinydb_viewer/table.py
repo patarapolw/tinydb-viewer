@@ -26,7 +26,7 @@ class ViewableTable(Table):
             viewer_func = lambda x: DataTable(x, table_name=self.name, **kwargs)
 
         if not sort_func:
-            sort_func = lambda x: -x.doc_id
+            sort_func = lambda x: -getattr(x, 'doc_id', 0)
 
         records = sorted(records, key=sort_func)
         self.view_dict = {
