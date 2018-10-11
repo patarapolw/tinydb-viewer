@@ -1,6 +1,8 @@
 var container = document.getElementById('hotArea');
 var actualConfig = {
     undo: true,
+    manualColumnResize: true,
+    manualRowResize: true,
     modifyColWidth: function(width, col){
         if(width > maxColWidth) return maxColWidth;
     },
@@ -72,8 +74,5 @@ colWidths = [];
 
 hot.updateSettings({
     colWidths: colWidths
-});
-
-hot.updateSettings({
     modifyColWidth: ()=>{}
 });
