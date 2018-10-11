@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "tinydb-viewer"
-version = "0.2.6"
+version = "0.2.7"
 description = "View records generated from TinyDB and alike (e.g. list of dictionaries.)"
 authors = ["Pacharapol Withyasakpunt <patarapolw@gmail.com>"]
 readme = 'README.md'

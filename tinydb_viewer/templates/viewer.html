@@ -17,14 +17,14 @@
   {% endif %}
 }
     </style>
-    <style>{% include 'handsontable.full.css' %}</style>
+    <style>{% include 'handsontable.full.min.css' %}</style>
 
     <title>{{ title }}</title>
   </head>
   <body>
     <div id="hotArea"></div>
 
-    <script>{% include 'handsontable.full.js' %}</script>
+    <script>{% include 'handsontable.full.min.js' %}</script>
 
     <script>var config = {{ config|tojson }};</script>
     <script>var maxColWidth = {{ maxColWidth|default('200') }};</script>
